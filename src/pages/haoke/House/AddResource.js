@@ -67,11 +67,13 @@ class AddResource extends PureComponent {
               delete values.houseType_5;
 
 
+              // 楼盘id
+              values.estateId =  this.state.estateId;
 
               dispatch({
-                    type: 'form/submitRegularForm',
-                    payload: values,
-                });
+                type: 'house/submitHouseForm',
+                payload: values,
+              });
             }
         });
     };
@@ -156,6 +158,11 @@ class AddResource extends PureComponent {
                             prefix={<Icon type="environment" style={{ color: 'rgba(0,0,0,.25)' }} />}
                              value={this.state.estateAddress} defaultValue={this.state.estateAddress} readOnly/>
                         </FormItem>
+
+                      <FormItem {...formItemLayout} label="房源标题">
+                        {getFieldDecorator('title',{rules:[{ required: true, message:"此项为必填项" }]})(<Input style={{ width: '100%' }}  />)}
+                      </FormItem>
+
                         <FormItem {...formItemLayout} label="楼栋">
                             <InputGroup compact>
                                 {getFieldDecorator('buildingNum',{rules:[{ required: true, message:"此项为必填项" }]})(<Input style={{ width: '30%' }}  addonAfter="栋" />)}
